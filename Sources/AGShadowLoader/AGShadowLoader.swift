@@ -12,11 +12,33 @@ public struct AGShadowLoader: View {
         var animationTime: Double = 2
         var cornerRadius: CGFloat = 10
         var shadowWidth: CGFloat = 80
+        
+        public init(
+            backgroundColor: SwiftUI.Color = Color.black,
+            gradientColors: [SwiftUI.Color] = [
+                Color.clear,
+                Color.white.opacity(0.7),
+                Color.clear
+            ],
+            animationTime: Double = 2,
+            cornerRadius: CGFloat = 10,
+            shadowWidth: CGFloat = 80
+        ) {
+            self.backgroundColor = backgroundColor
+            self.gradientColors = gradientColors
+            self.animationTime = animationTime
+            self.cornerRadius = cornerRadius
+            self.shadowWidth = shadowWidth
+        }
     }
     
     var config = AGShadowLoaderConfig()
     
     @State private var animate = false
+    
+    public init(config: AGShadowLoaderConfig = AGShadowLoaderConfig()) {
+        self.config = config
+    }
     
     public var body: some View {
         GeometryReader { geometry in
@@ -40,7 +62,6 @@ public struct AGShadowLoader: View {
             .onAppear() {
                 self.animate = true
             }
-            
         }
     }
     
